@@ -7,11 +7,12 @@ from .models import Pelicula #importar el modelo
 from .forms import PeliculaForm #importar el formulario
 from django.contrib.auth import logout #cerrar sesion
 
-
+# funcion del index
 def dashboard(request):
     peliculas = Pelicula.objects.all()
     return render(request, 'index.html', {'peliculas': peliculas})
 
+# inicio de sesion
 def login_view(request):
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
@@ -27,9 +28,13 @@ def login_view(request):
     return render(request, 'login.html', {'form': form})
 
 
+#cerrar sesion
+def cerrar_sesion(request):
+    logout(request)
+    return redirect('login_view')  # redirige a la página de inicio de sesión
 
 
-
+#agregar
 def nueva_pelicula(request):
     if request.method == 'POST':
         form = PeliculaForm(request.POST)
@@ -40,19 +45,14 @@ def nueva_pelicula(request):
         form = PeliculaForm()
     return render(request, 'nueva_pelicula.html', {'form': form})
 
-def cerrar_sesion(request):
-    logout(request)
-    return redirect('login_view')  # redirige a la página de inicio de sesión
-
-
-
-
+#borrar
 def borrar_pelicula(request, pelicula_id):
     pelicula = get_object_or_404(Pelicula, id=pelicula_id)
     pelicula.delete()
     peliculas = Pelicula.objects.all()
     return render(request, 'index.html', {'peliculas': peliculas})
 
+#editar
 def editar_pelicula(request, pelicula_id):
     pelicula = get_object_or_404(Pelicula, id=pelicula_id)
     if request.method == 'POST':
