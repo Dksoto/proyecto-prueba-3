@@ -22,13 +22,12 @@ from app.views import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    #abrir home como la ruta principal
-    path('', login_view,name='login_view'),
-    path('dashboard/', dashboard, name='dashboard'),
-    path('nueva_pelicula/', nueva_pelicula, name='nueva_pelicula'),
-    path('cerrar_sesion/', cerrar_sesion, name='cerrar_sesion'),
-    path('borrar/<int:pelicula_id>/', borrar_pelicula, name='borrar_pelicula'),
-    path('editar/<int:pelicula_id>/', editar_pelicula, name='editar_pelicula'),
+    path('', login_view,name='login_view'), #inicio de sesion
+    path('dashboard/', dashboard, name='dashboard'), #index
+    path('nueva_pelicula/', nueva_pelicula, name='nueva_pelicula'), #agregar
+    path('cerrar_sesion/', cerrar_sesion, name='cerrar_sesion'), #cerrar sesion
+    path('borrar/<int:pelicula_id>/', borrar_pelicula, name='borrar_pelicula'), #borrar
+    path('editar/<int:pelicula_id>/', editar_pelicula, name='editar_pelicula'), #editar
 
 
 
