@@ -5,7 +5,7 @@ from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect , get_object_or_404
 from .models import Pelicula #importar el modelo
 from .forms import PeliculaForm #importar el formulario
-from django.contrib.auth import logout #cerrar sesion
+from django.contrib.auth import logout #importar la funcion de cerrar sesion
 
 # funcion del index
 def dashboard(request):
