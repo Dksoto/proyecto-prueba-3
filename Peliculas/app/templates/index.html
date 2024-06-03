@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mis Películas</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Lista De Películas</h1>
+        <hr>
+        <!-- Botón para agregar nueva película -->
+        {%block content%}
+        <a href="{% url 'nueva_pelicula' %}" class="btn btn-primary mb-3">Agregar Película</a>
+        <!-- Botón para cerrar sesión -->
+        <a href="{% url 'cerrar_sesion' %}" class="btn btn-danger mb-3">Cerrar Sesión</a>
+        {%endblock%}
+
+        <!-- Lista de películas -->
+        <ul class="list-group">
+            {% for pelicula in peliculas %}
+            <li class="list-group-item">
+                <div class="d-flex justify-content-between align-items-center">
+                    <div>
+                        <h5>{{ pelicula.titulo }}</h5>
+                        <p>{{ pelicula.sinopsis }}</p>
+                        <p><strong>Duración:</strong> {{ pelicula.duracion }} minutos</p>
+                        <p><strong>Género:</strong> {{ pelicula.genero }}</p>
+                    </div>
+                    <div>
+                        <!-- Botones para editar y borrar película -->
+                        <a href="{% url 'editar_pelicula' pelicula.id %}" class="btn btn-warning">Editar</a>
+                        <a href="{% url 'borrar_pelicula' pelicula.id %}" class="btn btn-danger">Borrar</a>
+                    </div>
+                </div>
+            </li>
+            {% empty %}
+            <li class="list-group-item">No hay películas disponibles.</li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
