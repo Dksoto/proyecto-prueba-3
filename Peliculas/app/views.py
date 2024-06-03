@@ -1,13 +1,19 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.forms import AuthenticationForm, UserCreationForm
 from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect , get_object_or_404
 from .models import Pelicula #importar el modelo
 from .forms import PeliculaForm #importar el formulario
 from django.contrib.auth import logout #importar la funcion de cerrar sesion
+from django.contrib import messages #importar mensajes
+from django.contrib.auth.decorators import login_required #importar decorador para proteger las rutas
+
+
+
 
 # funcion del index
+@login_required
 def dashboard(request):
     peliculas = Pelicula.objects.all()
     return render(request, 'index.html', {'peliculas': peliculas})
@@ -35,6 +41,7 @@ def cerrar_sesion(request):
 
 
 #agregar
+@login_required
 def nueva_pelicula(request):
     if request.method == 'POST':
         form = PeliculaForm(request.POST)
@@ -46,6 +53,7 @@ def nueva_pelicula(request):
     return render(request, 'nueva_pelicula.html', {'form': form})
 
 #borrar
+@login_required
 def borrar_pelicula(request, pelicula_id):
     pelicula = get_object_or_404(Pelicula, id=pelicula_id)
     pelicula.delete()
@@ -53,6 +61,7 @@ def borrar_pelicula(request, pelicula_id):
     return render(request, 'index.html', {'peliculas': peliculas})
 
 #editar
+@login_required
 def editar_pelicula(request, pelicula_id):
     pelicula = get_object_or_404(Pelicula, id=pelicula_id)
     if request.method == 'POST':
@@ -70,3 +79,16 @@ def editar_pelicula(request, pelicula_id):
 
 
 
+
+
+def register_view(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Cuenta creada para {username}!')
+            return redirect('dashboard')  # Redirige al login después de registrarse
+    else:
+        form = UserCreationForm()
+    return render(request, 'register.html', {'form': form})

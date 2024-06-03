@@ -23,6 +23,7 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', login_view,name='login_view'), #inicio de sesion
+    path('register/', register_view, name='register'), #registro
     path('dashboard/', dashboard, name='dashboard'), #index
     path('nueva_pelicula/', nueva_pelicula, name='nueva_pelicula'), #agregar
     path('cerrar_sesion/', cerrar_sesion, name='cerrar_sesion'), #cerrar sesion

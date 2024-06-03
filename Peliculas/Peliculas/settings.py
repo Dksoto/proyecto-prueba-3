@@ -86,6 +86,9 @@ DATABASES = {
     }
 }
 
+LOGIN_URL = 'login_view' #proteger al iniciar sesion
+LOGIN_REDIRECT_URL = 'dashboard' #proteger al iniciar sesion aunque es como lo mismo de arriba xD
+LOGOUT_REDIRECT_URL = 'login_view' #al cerrar sesion
 
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
