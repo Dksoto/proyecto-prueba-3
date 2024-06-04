@@ -74,7 +74,7 @@ WSGI_APPLICATION = 'Peliculas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-# myproject/settings.py
+ #myproject/settings.py
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
@@ -85,6 +85,21 @@ DATABASES = {
         'PORT': '5432',       # Puerto mapeado en el contenedor y host
     }
 }
+
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'djongo',
+#        'NAME': 'proyect',
+#        'CLIENT':{
+#            'host': 'mongodb://root:root@localhost:27017',
+#            'username': 'root',
+#            'password': 'root',
+#            'authSource': 'admin'
+#        }
+#    }
+#}
+
+
 
 LOGIN_URL = 'login_view' #proteger al iniciar sesion
 LOGIN_REDIRECT_URL = 'dashboard' #proteger al iniciar sesion aunque es como lo mismo de arriba xD
