@@ -29,6 +29,7 @@ urlpatterns = [
     path('cerrar_sesion/', cerrar_sesion, name='cerrar_sesion'), #cerrar sesion
     path('borrar/<int:pelicula_id>/', borrar_pelicula, name='borrar_pelicula'), #borrar
     path('editar/<int:pelicula_id>/', editar_pelicula, name='editar_pelicula'), #editar
+    path('admin/', admin1, name='admin'), #admin
 
 
 

@@ -7,7 +7,7 @@ from .models import Pelicula #importar el modelo
 from .forms import PeliculaForm #importar el formulario
 from django.contrib.auth import logout #importar la funcion de cerrar sesion
 from django.contrib import messages #importar mensajes
-from django.contrib.auth.decorators import login_required #importar decorador para proteger las rutas
+from django.contrib.auth.decorators import login_required, user_passes_test #importar decoradores
 
 
 
@@ -76,7 +76,11 @@ def editar_pelicula(request, pelicula_id):
 
 
 
-
+@login_required
+@user_passes_test(lambda u: u.is_staff)
+def admin1(request):
+    # Lógica para la función de administrador
+    return render(request, 'admin.html')
 
 
 
