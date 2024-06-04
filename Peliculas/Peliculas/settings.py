@@ -86,18 +86,6 @@ DATABASES = {
     }
 }
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'djongo',
-#        'NAME': 'proyect',
-#        'CLIENT':{
-#            'host': 'mongodb://root:root@localhost:27017',
-#            'username': 'root',
-#            'password': 'root',
-#            'authSource': 'admin'
-#        }
-#    }
-#}
 
 
 
