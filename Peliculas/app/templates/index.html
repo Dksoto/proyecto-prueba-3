@@ -27,7 +27,9 @@
         <!-- Botón para cerrar sesión -->
         <a href="{% url 'cerrar_sesion' %}" class="btn btn-danger mb-3">Cerrar Sesión</a>
         <!-- Mensaje de éxito al agregar película -->
+        {% if user.is_superuser %}
         <a href="{% url 'admin' %}" class="btn btn-danger mb-3">Panel Admin</a>
+        {% endif %}
         {%endblock%}
 
         <!-- Lista de películas -->
